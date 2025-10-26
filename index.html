@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>ShowTails Evans Importer</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 20px;
+      background: #f9f9f9;
+    }
+    textarea {
+      width: 100%;
+      height: 60vh;
+      font-family: monospace;
+      font-size: 12px;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <h2>ShowTails – Evans Importer</h2>
+  <p>This page reads an uploaded Evans HTML pedigree file and returns its text.</p>
+
+  <script>
+    async function run() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const file = urlParams.get("file");
+      if (!file) {
+        document.body.innerHTML += "<p style='color:red'>❌ No file parameter found.</p>";
+        return;
+      }
+
+      try {
+        const res = await fetch(file);
+        const text = await res.text();
+        const escaped = text
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;");
+        document.body.innerHTML += `
+          <textarea readonly>${escaped}</textarea>
+          <p>✅ Copy this HTML text into Glide (or send via Webhook).</p>
+        `;
+      } catch (err) {
+        document.body.innerHTML += "<p style='color:red'>Error fetching file: " + err + "</p>";
+      }
+    }
+    run();
+  </script>
+</body>
+</html>
