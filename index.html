@@ -49,36 +49,5 @@
     run();
   </script>
 
-  <!-- Copy All Button -->
-<button onclick="copyAll()" 
-  style="
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    padding: 8px 14px;
-    font-size: 12pt;
-    font-weight: bold;
-    background: #ffd700;
-    color: black;
-    border: 2px solid #333;
-    border-radius: 6px;
-    cursor: pointer;
-    z-index: 9999;
-  ">
-  Copy All
-</button>
-
-<script>
-function copyAll() {
-    // Get the full HTML source exactly as Evans wrote it
-    const html = document.documentElement.outerHTML;
-
-    navigator.clipboard.writeText(html)
-        .then(() => alert("Full HTML copied to clipboard!"))
-        .catch(() => alert("Unable to copy."));
-}
-</script>
-
-
 </body>
 </html>
