@@ -48,8 +48,9 @@
     }
     run();
   </script>
+
   <!-- Copy All Button -->
-<button id="copyBtn"
+<button onclick="copyAll()" 
   style="
     position: fixed;
     top: 10px;
@@ -68,19 +69,16 @@
 </button>
 
 <script>
-  document.getElementById("copyBtn").addEventListener("click", function () {
-    const fullText = document.body.innerText;
+function copyAll() {
+    // Get the full HTML source exactly as Evans wrote it
+    const html = document.documentElement.outerHTML;
 
-    navigator.clipboard.writeText(fullText)
-      .then(() => {
-        alert("Pedigree copied to clipboard!");
-      })
-      .catch(err => {
-        console.error("Copy failed:", err);
-        alert("Unable to copy.");
-      });
-  });
+    navigator.clipboard.writeText(html)
+        .then(() => alert("Full HTML copied to clipboard!"))
+        .catch(() => alert("Unable to copy."));
+}
 </script>
+
 
 </body>
 </html>
