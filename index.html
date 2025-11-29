@@ -48,5 +48,39 @@
     }
     run();
   </script>
+  <!-- Copy All Button -->
+<button id="copyBtn"
+  style="
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    padding: 8px 14px;
+    font-size: 12pt;
+    font-weight: bold;
+    background: #ffd700;
+    color: black;
+    border: 2px solid #333;
+    border-radius: 6px;
+    cursor: pointer;
+    z-index: 9999;
+  ">
+  Copy All
+</button>
+
+<script>
+  document.getElementById("copyBtn").addEventListener("click", function () {
+    const fullText = document.body.innerText;
+
+    navigator.clipboard.writeText(fullText)
+      .then(() => {
+        alert("Pedigree copied to clipboard!");
+      })
+      .catch(err => {
+        console.error("Copy failed:", err);
+        alert("Unable to copy.");
+      });
+  });
+</script>
+
 </body>
 </html>
