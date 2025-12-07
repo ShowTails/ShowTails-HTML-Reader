@@ -20,7 +20,7 @@
 </head>
 <body>
   <h2>ShowTails – Evans Importer</h2>
-  <p>Copy the full text below.</p>
+  <p>This page reads an uploaded Evans HTML pedigree file and returns its text.</p>
 
   <script>
     async function run() {
@@ -40,7 +40,7 @@
           .replace(/>/g, "&gt;");
         document.body.innerHTML += `
           <textarea readonly>${escaped}</textarea>
-          <p>✅ Once copied,then paste in the "Evan's Raw HTML Text" Below .</p>
+          <p>✅ Copy this HTML text into Glide (or send via Webhook).</p>
         `;
       } catch (err) {
         document.body.innerHTML += "<p style='color:red'>Error fetching file: " + err + "</p>";
